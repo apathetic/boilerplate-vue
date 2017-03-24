@@ -1,7 +1,7 @@
 const path = require('path')
 // const projectRoot = path.resolve(__dirname, '../')
 const vueConfig = require('./vue-loader.config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: '#source-map',
@@ -15,7 +15,8 @@ module.exports = {
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'styles': path.resolve(__dirname, '../src/styles')
     }
   },
 
@@ -57,9 +58,9 @@ module.exports = {
         }
       }
     ]
-  },
+  }
 
-  plugins: [
-    new ExtractTextPlugin('style.css')
-  ]
+  // plugins: [
+  //   new ExtractTextPlugin('style.css')
+  // ]
 }

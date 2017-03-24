@@ -24,8 +24,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+  @import '~styles/variables.scss';
+
   body {
     background: gray;
+    padding: $gutter;
   }
 </style>
