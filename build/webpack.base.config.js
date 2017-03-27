@@ -1,7 +1,5 @@
 const path = require('path')
-// const projectRoot = path.resolve(__dirname, '../')
-const vueConfig = require('./vue-loader.config')
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: '#source-map',
@@ -43,7 +41,14 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueConfig
+        options: {
+          loaders: {
+            scss: ExtractTextPlugin.extract({
+              fallback: { loader: 'vue-style-loader' },
+              use: ['css-loader', 'postcss-loader', 'sass-loader']
+            })
+          }
+        }
       },
       {
         test: /\.js$/,
@@ -58,9 +63,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
 
-  // plugins: [
-  //   new ExtractTextPlugin('style.css')
-  // ]
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'style.css'  // i think this is where this plugin will save the extracted css to
+    })
+  ]
 }
