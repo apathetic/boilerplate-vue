@@ -17,14 +17,14 @@ const config = merge(base, {
     }),
     // generate output HTML
     new HTMLPlugin({
-      template: 'src/index.template.html',
-      // inject: false // vue-server-renderer will inject its js, css anyways.
+      template: 'src/index.html',
+      // inject: false,                             // vue-server-renderer inherits from this..?? vue-SSR will inject its js, css anyways.
       minify : {
           html5                          : true,
           collapseWhitespace             : true,
-          removeComments                 : true,
           removeRedundantAttributes      : true,
           removeScriptTypeAttributes     : true,
+          // removeComments                 : true, // ACK. This strips out the <!-- vue-ssr-outlet--> DO NOT USE.
           // minifyCSS                      : true,
           // minifyJS                       : true,
           // minifyURLs                     : false,
