@@ -5,11 +5,6 @@ const HTMLPlugin = require('html-webpack-plugin')
 const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 
 const config = merge(base, {
-  resolve: {
-    alias: {
-      'create-api': './create-api-client.js'
-    }
-  },
   plugins: [
     // strip dev-only code in Vue source
     new webpack.DefinePlugin({
@@ -22,20 +17,23 @@ const config = merge(base, {
     }),
     // generate output HTML
     new HTMLPlugin({
-      template: 'src/index.template.html'
-      // minify: ....
-      // "files":     "css": [ "main.css" ],
-        // "js": [ "assets/head_bundle.js", "assets/main_bundle.js"],
-        // "chunks": {
-        //   "head": {
-        //     "entry": "assets/head_bundle.js",
-        //     "css": [ "main.css" ]
-        //   },
-        //   "main": {
-        //     "entry": "assets/main_bundle.js",
-        //     "css": []
-        //   },
-
+      template: 'src/index.template.html',
+      // inject: false // vue-server-renderer will inject its js, css anyways.
+      minify : {
+          html5                          : true,
+          collapseWhitespace             : true,
+          removeComments                 : true,
+          removeRedundantAttributes      : true,
+          removeScriptTypeAttributes     : true,
+          // minifyCSS                      : true,
+          // minifyJS                       : true,
+          // minifyURLs                     : false,
+          // removeAttributeQuotes          : true,
+          // removeEmptyAttributes          : true,
+          // removeOptionalTags             : true,
+          // removeStyleLinkTypeAttributes  : true,
+          // useShortDoctype                : true
+      }
     })
   ]
 });

@@ -43,6 +43,7 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
+            css: 'css-loader',
             scss: ExtractTextPlugin.extract({
               fallback: { loader: 'vue-style-loader' },
               use: ['css-loader', 'postcss-loader', 'sass-loader']
