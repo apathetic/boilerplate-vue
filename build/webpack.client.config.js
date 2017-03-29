@@ -18,7 +18,6 @@ const config = merge(base, {
     // generate output HTML
     new HTMLPlugin({
       template: 'src/index.html',
-      // inject: false,                             // vue-server-renderer inherits from this..?? vue-SSR will inject its js, css anyways.
       minify : {
           html5                          : true,
           collapseWhitespace             : true,
